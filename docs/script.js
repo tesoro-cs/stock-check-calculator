@@ -151,10 +151,9 @@ Inputs.calcButton.addEventListener('click', async e => {
     })
   const portfolio = csvToArray(await readFile(Inputs.portfolio))
   const performance = csvToArray(await readFile(Inputs.performance))
-  console.group('Test')
-  console.log(transactions, portfolio, performance);
+
+  console.groupCollapsed('Console Output');
   [transactions, portfolio, performance].forEach(t => console.table(t))
-  console.groupEnd('Test')
 
   // Show Ranks Table
   const rankCol = performance[0].indexOf('Rank')
@@ -215,7 +214,6 @@ Inputs.calcButton.addEventListener('click', async e => {
     const amount = Number(current.amount?.replace(/[^0-9.-]/g, ''))
     const shares = Number(current.shares?.replace(/[^0-9.-]/g, ''))
     const isBuy = amount && current.type.toLowerCase() === 'buy'
-    console.log(amount)
     if (isBuy) item.totalBuys += price * amount
     else item.totalSales += price * (amount || shares)
 
@@ -225,17 +223,9 @@ Inputs.calcButton.addEventListener('click', async e => {
     item.percentGain = item.profit / item.totalBuys * 100
     return item
   })
-  console.log(combinedList)
-  console.table(combinedList)
 
-  // combinedList.forEach(row => {
-  //   const symbol = row.symbol
-  //   const profit = Math.round(Number(row[7].replace(/[^0-9.-]/g,'')) * 1000) / 1000
-  //   if (!dict[symbol]) dict[symbol] = 0, totalBuys[symbol] = 0, totalSales[symbol] = 0
-  //   dict[symbol] += profit
-  //   if (profit < 0) /*BUY*/ totalBuys[symbol] -= profit;
-  //   else totalSales[symbol] += profit
-  // })
+  console.table(combinedList)
+  console.groupEnd()
 
   combinedList.sort((a, b) => {
     return a.percentGain - b.percentGain
@@ -260,12 +250,36 @@ Inputs.calcButton.addEventListener('click', async e => {
     Tables.gains.querySelector('tbody').appendChild(tr)
   })
 
-  // portfolio.forEach((row, index) => {
-  //   const tr = document.createElement('tr')
-  //   const tag = index ? 'td' : 'th'
-  //   tr.innerHTML = row.map(item => `<${tag}>${htmlEscape(item)}</${tag}>`).join('')
-  //   Tables.portfolio.querySelector(index ? 'tbody' : 'thead').appendChild(tr)
-  // })
+  document.querySelector('.file-form').style.display = 'none'
+  document.querySelector('.results').style.display = 'block'
+})
+
+document.body.addEventListener('dragover', e => {
+  document.body.classList.add('drop-active')
+  const labels = Object.values(Inputs).map(elm => elm.parentNode)
+  const hoverLabel = labels.find(label => label.contains(e.target))
+  if (!hoverLabel) return
+  // labels.forEach(l => l.classList.remove('active'))
+  hoverLabel.classList.add('active')
+})
+document.body.addEventListener('dragend', e => {
+  document.body.classList.remove('drop-active')
+})
+document.body.addEventListener('abort', e => {
+  document.body.classList.remove('drop-active')
+})
+document.body.addEventListener('dragleave', e => {
+  const labels = Object.values(Inputs).map(elm => elm.parentNode)
+  labels.forEach(l => l.classList.remove('active'))
+  if (e.target !== document.querySelector('.wrapper')) return
+  document.body.classList.remove('drop-active')
+})
+document.body.addEventListener('drop', e => {
+  e.preventDefault()
+  const hoverLabel = Object.values(Inputs).map(elm => elm.parentNode).find(label => label.contains(e.target))
+  if (!hoverLabel) return
+  document.body.classList.remove('drop-active')
+  hoverLabel.querySelector('input:not(.dropzone)').files = e.dataTransfer.files
 })
 
 // Number('-$12,122.23'.replace(/[^0-9.-]/g,''))
