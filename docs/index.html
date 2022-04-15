@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stock Check Calculator</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <h1>Stock Check Calculator</h1>
+
+  <div class="file-form">
+    <label for="portfolio">
+      Portfolio Holdings:
+      <input type="file" name="portfolio" id="portfolio-input">
+    </label>
+    <br>
+    <label for="performance">
+      Portfolio Performance:
+      <input type="file" name="performance" id="performance-input">
+    </label>
+    <br>
+    <label for="transactions">
+      Portfolio Transactions:
+      <input type="file" name="transactions" id="transaction-input">
+    </label>
+    <br>
+
+    <button id="calc-button">Calculate Stats</button>
+  </div>
+
+  <h2>Portfolio Performance</h2>
+  <p>Your highest rank will be highlighted in green, and your worst rank will be highlighted in red</p>
+  <details open><summary>Portfolio Performance Table</summary>
+    <table id="performance-table">
+      <thead></thead>
+      <tbody></tbody>
+    </table>
+  </details>
+
+  <h2>Portfolio Holdings</h2>
+  <p>This includes stocks that are currently in your portfolio</p>
+  <details open><summary>Portfolio Holdings Table</summary>
+    <table id="portfolio-table">
+      <thead></thead>
+      <tbody></tbody>
+    </table>
+  </details>
+
+  <h2>Portfolio Transactions</h2>
+  <p>This shows a complete list of your <b id="transaction-count"></b> transactions</p>
+  <details open><summary>Portfolio Transactions Table</summary>
+    <table id="transaction-table">
+      <thead></thead>
+      <tbody></tbody>
+    </table>
+  </details>
+
+  <h2>Capital Gains</h2>
+  <p>This includes the total capital gains (or losses) by stock as well as the change in percent value. </p>
+  <details open><summary>Portfolio Performance Table</summary>
+    <table id="gains-table">
+      <thead>
+        <th>Symbol</th>
+        <th>Total Buying Price</th>
+        <th>Total Sale Price</th>
+        <th>Profit</th>
+        <th>Percent Gains</th>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </details>
+  
+</body>
+</html>

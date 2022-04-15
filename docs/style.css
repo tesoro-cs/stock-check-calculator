@@ -1,0 +1,24 @@
+details summary {
+  user-select: none;
+  cursor: pointer;
+  margin-bottom: 8px;
+}
+
+table {
+  border-collapse: collapse;
+  border: 1px solid #333;
+  position: relative;
+}
+thead {
+  border-bottom: 1px solid #333;
+}
+table :is(th, td) {
+  padding: 5px 8px;
+  border: 1px solid #333;
+  user-select: all;
+  background-color: var(--background-color)
+}
+table tr:nth-child(2n) :is(th, td) {
+  background-color: var(--background-color, #eee);
+}
+
