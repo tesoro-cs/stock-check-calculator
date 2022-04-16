@@ -228,7 +228,7 @@ Inputs.calcButton.addEventListener('click', async e => {
   console.groupEnd()
 
   combinedList.sort((a, b) => {
-    return a.percentGain - b.percentGain
+    return b.percentGain - a.percentGain
   }).forEach((item, index) => {
     const symbol = item.symbol
     const profit = item.profit

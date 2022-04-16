@@ -123,6 +123,8 @@ button {
   border: 1px solid #444a;
   border-radius: 12px;
   appearance: none;
+  -webkit-appearance: none;
+  color: inherit;
   background-color: #eeea;
   cursor: pointer;
   font-size: 24px;
@@ -136,9 +138,11 @@ button:active {
   border: 1px solid #444a;
   border-radius: 4px;
   padding: 4px 8px;
-  appearance: none;
   background-color: #eeea;
   cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  color: inherit;
 }
 ::file-selector-button:active {
   opacity: 0.7;
@@ -148,9 +152,11 @@ button:active {
   border: 1px solid #444a;
   border-radius: 4px;
   padding: 4px 8px;
-  appearance: none;
   background-color: #eeea;
   cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  color: inherit;
 }
 ::-webkit-file-selector-button:active {
   opacity: 0.7;
