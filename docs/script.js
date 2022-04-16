@@ -236,8 +236,8 @@ Inputs.calcButton.addEventListener('click', async e => {
       return typeof input === 'number' ? Math.round(input * 1000) / 1000 : input
     })
     const tr = document.createElement('tr')
-    if (index === combinedList.length - 1) tr.style.setProperty('--background-color', ColorKey.best)
-    else if (index === 0) tr.style.setProperty('--background-color', ColorKey.worst)
+    if (index === combinedList.length - 1) tr.style.setProperty('--background-color', ColorKey.worst)
+    else if (index === 0) tr.style.setProperty('--background-color', ColorKey.best)
     tr.innerHTML = `<td>${symbol}</td><td>${
       moneyString(data[0])
     }</td><td>${
